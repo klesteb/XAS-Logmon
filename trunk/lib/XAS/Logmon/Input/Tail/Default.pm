@@ -18,9 +18,9 @@ use XAS::Class
 sub get {
     my $self = shift;
 
-    if (scalar(@{$self->{buffer}})){
+    if (scalar(@{$self->{'buffer'}})){
 
-        return shift @{$self->{buffer}};
+        return shift @{$self->{'buffer'}};
 
     } else {
 
@@ -35,9 +35,9 @@ sub get {
 
                 $self->_do_tail();
 
-                if (scalar(@{$self->{buffer}})) {
+                if (scalar(@{$self->{'buffer'}})) {
 
-                    return shift @{$self->{buffer}};
+                    return shift @{$self->{'buffer'}};
  
                 }
 

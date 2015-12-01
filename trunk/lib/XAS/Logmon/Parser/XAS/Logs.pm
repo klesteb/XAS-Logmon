@@ -29,8 +29,8 @@ sub parse {
 
     if ((@data{@$fields}) = ($line =~ /$regex/)) {
 
-        $data{message} = trim($data{message});
-        $data{type}    = 'xas-logs';
+        $data{'message'} = trim($data{'message'});
+        $data{'type'}    = 'xas-logs';
 
         return \%data;
 
@@ -60,8 +60,8 @@ sub init {
     my $reg = XAS::Lib::Regexp::Log::XAS->new(@args);
     my @fields = $reg->capture;
 
-    $self->{regex}  = $reg->regexp;
-    $self->{fields} = \@fields;
+    $self->{'regex'}  = $reg->regexp;
+    $self->{'fields'} = \@fields;
 
     return $self;
 

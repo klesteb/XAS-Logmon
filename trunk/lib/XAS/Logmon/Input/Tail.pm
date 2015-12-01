@@ -48,7 +48,7 @@ sub _do_tail {
 
     while (my $line = $fh->getline()) {
 
-        push(@{$self->{buffer}}, $line);
+        push(@{$self->{'buffer'}}, $line);
 
     }
 
@@ -80,10 +80,10 @@ sub _file_position {
 
         }
 
-        if (($stat[0] eq $state->{device}) and
-            ($stat[1] eq $state->{inode})) {
+        if (($stat[0] eq $state->{'device'}) and
+            ($stat[1] eq $state->{'inode'})) {
 
-            $pos = $state->{position};
+            $pos = $state->{'position'};
 
         }
 
@@ -117,8 +117,8 @@ sub init {
 
     my $self = $class->SUPER::init(@_);
 
-    $self->{buffer} = [];
-    $self->{statefile} = File($self->filename->directory, '.' . $self->filename->name . '.logmon');
+    $self->{'buffer'} = [];
+    $self->{'statefile'} = File($self->filename->volume, $self->filename->directory, '.' . $self->filename->basename . '.logmon');
 
     $self->init_notifier();
 

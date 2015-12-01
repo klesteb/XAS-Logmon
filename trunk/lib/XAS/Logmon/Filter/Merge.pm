@@ -34,7 +34,7 @@ sub filter {
 sub init {
     my $self = shift;
 
-    $self->{hm} = Hash::Merge->new('RIGHT_PRECEDENT');
+    $self->{'hm'} = Hash::Merge->new('RIGHT_PRECEDENT');
 
     return $self;
 

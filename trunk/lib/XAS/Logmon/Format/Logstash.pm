@@ -84,7 +84,7 @@ sub init {
 
     my $self = $class->SUPER::init(@_);
 
-    $self->{hm} = Hash::Merge->new('RIGHT_PRECEDENT');
+    $self->{'hm'} = Hash::Merge->new('RIGHT_PRECEDENT');
 
     return $self;
 

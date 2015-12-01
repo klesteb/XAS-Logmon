@@ -129,6 +129,11 @@ The root directory to for the command to run in. Defaults to "/".
 Auto restart only works if the process uses these exit codes. Defaults to "0,1".
 This needs to be a comma delimited string.
 
+=item B<exit-retries>
+
+The number of retries to try before giving up. Defaults to -1. This means to 
+continually retry.
+
 =item B<group>
 
 The group to run the process under. Defaults to "xas". This is not used on

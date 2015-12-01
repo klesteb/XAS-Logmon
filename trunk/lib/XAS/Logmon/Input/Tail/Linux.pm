@@ -25,11 +25,11 @@ use XAS::Class
 sub get {
     my $self = shift;
 
-    if (scalar(@{$self->{buffer}})){
+    if (scalar(@{$self->{'buffer'}})){
 
         $self->log->debug('processing...');
 
-        return shift @{$self->{buffer}};
+        return shift @{$self->{'buffer'}};
 
     } else {
 
@@ -46,9 +46,9 @@ sub get {
 
             if ($self->_in_modify) {
 
-                if (scalar(@{$self->{buffer}})) {
+                if (scalar(@{$self->{'buffer'}})) {
 
-                    return shift @{$self->{buffer}};
+                    return shift @{$self->{'buffer'}};
  
                 }
 
@@ -70,7 +70,7 @@ sub init_notifier {
     $self->_in_delete(0);
     $self->_in_create(0);
 
-    $self->{notifier} = Linux::Inotify2->new() or
+    $self->{'notifier'} = Linux::Inotify2->new() or
         $self->throw_msg(
             dotid($self->class) . '.inotify',
             'logmon_notifier',

@@ -33,7 +33,7 @@ sub reject {
         end   => $now
     );
 
-    return 1 if ($span->contains($data->{datetime}));
+    return 1 if ($span->contains($data->{'datetime'}));
 
     return 0;
 
@@ -42,7 +42,7 @@ sub reject {
 sub setup {
     my $self = shift;
 
-    unless (defined($self->{filename})) {
+    unless (defined($self->{'filename'})) {
 
         $self->throw_msg(
             dotid($self->class) . '.nofilename',

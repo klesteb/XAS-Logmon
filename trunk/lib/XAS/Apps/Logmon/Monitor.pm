@@ -54,6 +54,7 @@ sub setup {
             -auto_restart   => $self->cfg->val($section, 'auto-restart', TRUE),
             -directory      => Dir($self->cfg->val($section, 'directory', "/")),
             -exit_codes     => $self->cfg->val($section, 'exit-codes', '0,1'),
+            -exit_retries   => $self->cfg->val($section, 'exit-retires', -1),
             -group          => $self->cfg->val($section, 'group', 'xas'),
             -priority       => $self->cfg->val($section, 'priority', '0'),
             -umask          => $self->cfg->val($section, 'umask', '0022'),
