@@ -35,13 +35,17 @@ sub setup {
 
         my ($alias)  = $section =~ /^logmon:(.*)/;
         my $ignore   = $self->cfg->val($section, 'ignore', '30');
-        my $filename = $self->cfg->val($section, 'filename', '/var/logs/xas/xas-spooler.log');
-        my $spooldir = $self->cfg->val($section, 'spooldir', '/var/spool/xas/logs');
-        my $command = sprintf('%s --filename %s --spooldir %s --ignore %s --log-type console',
-            $self->cfg->val($section, 'command'),
+        my $filename = File($self->cfg->val($section, 'filename', '/var/logs/xas/xas-spooler.log'));
+        my $spooldir = Dir($self->cfg->val($section, 'spooldir', '/var/spool/xas/logs'));
+        my $command  = File($self->cfg->val($section, 'command'));
+        my $pidfile  = File($self->env->run, $command->basename . '-' . $filename->basename . '.pid');
+
+        my $command = sprintf('%s --filename %s --spooldir %s --ignore %s --pid-file %s --log-type console',
+            $command,
             $filename,
             $spooldir,
             $ignore,
+            $pidfile,
         );
 
         $alias = trim($alias);
