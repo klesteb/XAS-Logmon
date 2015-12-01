@@ -30,8 +30,8 @@ use vars qw( %DEFAULT %FORMAT %REGEXP );
 
 %REGEXP = (
     '%datetime' => '\[(?#=datetime)\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}(?#!datetime)\]\s+',
-    '%level'    => '\(?#=level)\w+(?#!level)\s+-\s+',
-    '%task'     => '\(?#=task)\w+(?#!task)\:\s+',
+    '%level'    => '(?#=level)\w+(?#!level)\s+-\s+',
+    '%task'     => '(?#=task)\w+(?#!task)\:\s+',
     '%message'  => '(?#=message).*(?#!message)',
 );
 
