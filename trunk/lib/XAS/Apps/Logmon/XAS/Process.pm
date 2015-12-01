@@ -58,11 +58,8 @@ sub main {
 
     $self->setup();
 
-    my $output = XAS::Logmon::Output::Spool->new(
-        -directory => $self->spooldir
-    );
-
-    my $input = XAS::Logmon::Input::Tail->new(
+    my $output = XAS::Logmon::Output::Spool->new();
+    my $input  = XAS::Logmon::Input::Tail->new(
         -filename => $self->filename
     );
 
