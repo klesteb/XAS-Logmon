@@ -1,12 +1,13 @@
 package XAS::Logmon::Input::Tail;
 
-our $mixin;
 our $VERSION = '0.01';
+
+my $mixin;
 
 BEGIN {
     $mixin = 'XAS::Logmon::Input::Tail::Default';
-    $mixin = 'XAS::Logmon::Input::Tail::Linux'   if ($^O eq 'linux');
-    $mixin = 'XAS::Logmon::Input::Tail::Win32'   if ($^O eq 'MSWin32');
+    $mixin = 'XAS::Logmon::Input::Tail::Linux' if ($^O eq 'linux');
+    $mixin = 'XAS::Logmon::Input::Tail::Win32' if ($^O eq 'MSWin32');
 }
 
 use Fcntl ':seek';

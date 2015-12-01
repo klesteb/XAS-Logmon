@@ -4,11 +4,11 @@ our $VERSION = '0.01';
 
 use DateTime;
 use DateTime::Span;
-use XAS::Logmon::Parser::XAS;
 use XAS::Logmon::Input::Tail;
 use XAS::Logmon::Filter::Merge;
 use XAS::Logmon::Output::Spool;
 use XAS::Logmon::Format::Logstash;
+use XAS::Logmon::Parser::XAS::Logs;
 
 use XAS::Class
   debug      => 0,
@@ -68,8 +68,8 @@ sub main {
 
     my $merge    = XAS::Logmon::Filter::Merge->new();
     my $logstash = XAS::Logmon::Format::Logstash->new();
-    my $default  = XAS::Logmon::Parser::XAS->new();
-    my $tasks    = XAS::Logmon::Parser::XAS->new(
+    my $default  = XAS::Logmon::Parser::XAS::Logs->new();
+    my $tasks    = XAS::Logmon::Parser::XAS::Logs->new(
         format => ':tasks'
     );
 
@@ -82,9 +82,6 @@ sub main {
             $data = $merge->filter($data, {
                 '@message' => trim($line),
                 hostname   => $self->env->hostname,
-                pid        => 0,
-                tid        => 0,
-                process    => '',
             });
 
             my $event = $logstash->format($data);
@@ -95,17 +92,13 @@ sub main {
 
         }
 
-        if (my $data = $task->parse($line)) {
+        if (my $data = $tasks->parse($line)) {
 
             next if ($self->reject($data));
 
             $data = $merge->filter($data, {
                 '@message' => trim($line),
                 hostname   => $self->env->hostname,
-                pid        => 0,
-                tid        => 0,
-                msgnum     => 0,
-                process    => '',
             });
 
             my $event = $logstash->format($data);

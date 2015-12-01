@@ -1,4 +1,4 @@
-package XAS::Log::Input::Tail::Linux;
+package XAS::Logmon::Input::Tail::Linux;
 
 our $VERSION = '0.01';
 

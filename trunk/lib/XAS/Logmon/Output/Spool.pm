@@ -2,14 +2,14 @@ package XAS::Logmon::Output::Spool;
 
 our $VERSION = '0.01';
 
-use XAS::Lib::Spool;
+use XAS::Factory;
 use Try::Tiny::Retry ':all';
 
 use XAS::Class
   debug      => 0,
   version    => $VERSION,
   base       => 'XAS::Base',
-  mixin      => 'XAS::Lib::Mixin::Handlers',
+  mixin      => 'XAS::Lib::Mixins::Handlers',
   utils      => ':validation',
   constants  => 'TRUE FALSE',
   accessors  => 'spool',
@@ -64,10 +64,10 @@ sub init {
 
     my $self = $class->SUPER::init(@_);
 
-    $self->{'spool'} = XAS::Lib::Spool->new(
+    $self->{'spool'} = XAS::Factory->module('spool', {
         -directory => Dir($self->env->spool, 'logs'),
         -lock      => Dir($self->env->spool, 'logs', 'locked')->path
-    );
+    });
 
     return $self;
 
