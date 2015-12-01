@@ -1,0 +1,10 @@
+
+/var/log/xas/xas-logmon.log {
+    daily
+    nodateext
+    rotate 5
+    missingok
+    notifempty
+    copytruncate
+}
+
