@@ -13,7 +13,8 @@ debian/watch
 etc/.gitkeeper
 etc/xas-logmon.ini
 ignore.txt
-init.d/xas-logmon
+init.d/xas-logmon.debian
+init.d/xas-logmon.rhel
 lib/XAS/Apps/Logmon/XAS/Monitor.pm
 lib/XAS/Apps/Logmon/XAS/Process.pm
 lib/XAS/Docs/Logmon/Installation.pm

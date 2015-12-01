@@ -345,7 +345,7 @@ EOC
 
 my $builder = $class->new(
     module_name         => 'XAS::Logmon',
-    license             => 'artistic2',
+    license             => 'artistic_2',
     dist_author         => q{Kevin L. Esteb <kevin@kesteb.us>},
     dist_version_from   => 'lib/XAS/Logmon.pm',
     release_status      => 'stable',
