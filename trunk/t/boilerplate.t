@@ -55,7 +55,7 @@ TODO: {
     "placeholder date/time"       => qr(Date/time)
   );
 
-  module_boilerplate_ok('lib/XAS/Apps/Logmon/XAS/Monitor.pm');
+  module_boilerplate_ok('lib/XAS/Apps/Logmon/Monitor.pm');
   module_boilerplate_ok('lib/XAS/Apps/Logmon/XAS/Process.pm');
   module_boilerplate_ok('lib/XAS/Lib/Regexp/Log/XAS.pm');
   module_boilerplate_ok('lib/XAS/Logmon/Filter/Merge.pm');

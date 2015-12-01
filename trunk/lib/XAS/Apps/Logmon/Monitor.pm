@@ -1,4 +1,4 @@
-package XAS::Apps::Logmon::XAS::Monitor;
+package XAS::Apps::Logmon::Monitor;
 
 our $VERSION = '0.01';
 
@@ -16,7 +16,7 @@ use XAS::Class
   vars => {
     SERVICE_NAME         => 'XAS_Log',
     SERVICE_DISPLAY_NAME => 'XAS Log Monitor',
-    SERVICE_DESCRIPTION  => 'Monitor XAS log files'
+    SERVICE_DESCRIPTION  => 'Monitor log files'
   }
 ;
 
@@ -37,7 +37,7 @@ sub setup {
         my $ignore   = $self->cfg->val($section, 'ignore', '30');
         my $filename = $self->cfg->val($section, 'filename', '/var/logs/xas/xas-spooler.log');
         my $spooldir = $self->cfg->val($section, 'spooldir', '/var/spool/xas/logs');
-        my $command = sprintf('%s --filename %s --spooldir %s --ignore %s',
+        my $command = sprintf('%s --filename %s --spooldir %s --ignore %s --log-type console',
             $self->cfg->val($section, 'command'),
             $filename,
             $spooldir,
@@ -108,15 +108,16 @@ __END__
 
 =head1 NAME
 
-XAS::Apps::Logmon::XAS::Monitor - A class for the XAS environment
+XAS::Apps::Logmon::Monitor - A class for the XAS environment
 
 =head1 SYNOPSIS
 
- use XAS::Apps::Log::Monitor;
+ use XAS::Apps::Logmon::Monitor;
+
 
 =head1 DESCRIPTION
 
-This module will spawn multiple log monitor processes. It will keep track
+This module will spawn multiple log monitoring processes. It will keep track
 of them and restart them if they should stop.
 
 =head1 METHODS

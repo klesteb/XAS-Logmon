@@ -4,7 +4,7 @@ use Test::More tests => 10;
 
 BEGIN {
 
-    use_ok( 'XAS::Apps::Logmon::XAS::Monitor' ) || print "Bail out!\n";
+    use_ok( 'XAS::Apps::Logmon::Monitor' )      || print "Bail out!\n";
     use_ok( 'XAS::Apps::Logmon::XAS::Process' ) || print "Bail out!\n";
     use_ok( 'XAS::Lib::Regexp::Log::XAS' )      || print "Bail out!\n";
     use_ok( 'XAS::Logmon::Filter::Merge' )      || print "Bail out!\n";

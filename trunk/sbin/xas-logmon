@@ -1,0 +1,231 @@
+#!/usr/bin/perl
+# ============================================================================
+#             Copyright (c) 2012-2015 Kevin L. Esteb All Rights Reserved
+#
+#
+# TITLE:       xas-logmon
+#
+# FACILITY:    XAS
+#
+# ABSTRACT:    This is the control program that launches log monitors.
+#
+# ENVIRONMENT: The XAS Middleware Environment
+#
+# PARAMETERS:
+#              --cfg-file     the configuration file to use
+#              --pid-file     the pid file to use
+#              --log-type     toggles the log type
+#              --log-facility changes the log facility to use
+#              --log-file     name of the log file
+#              --help         prints out a helpful help message
+#              --manual       prints out the procedures manual
+#              --version      prints out the procedures version
+#              --debug        toggles debug output
+#              --alerts       toggles alert notification
+#
+# RETURNS:
+#              0 - success
+#              1 - failure
+#
+# Version      Author                                              Date
+# -------      ----------------------------------------------      -----------
+# 0.01         Kevin Esteb                                         02-Dec-2015
+#
+# ============================================================================
+#
+
+use lib "../lib";
+use XAS::Apps::Logmon::Monitor;
+
+main: {
+
+    my $app = XAS::Apps::Logmon::Monitor->new(
+        -throws => 'xas-logmon',
+    );
+
+    exit $app->run();
+
+}
+
+__END__
+
+=head1 NAME
+
+xas-logmon - the control program for log monitors
+
+=head1 SYNOPSIS
+
+xas-logmon [--help] [--debug] [--manual] [--version]
+
+ options:
+   --help         outputs simple help text
+   --manual       outputs the procedures manual
+   --version      outputs the apps version
+   --debug        toogles debugging output
+   --alerts       toogles alert notifications
+   --log-file     name of the log file 
+   --log-type     toggles the log type
+   --log-facility changes the log facility
+   --cfg-file     the configuration file to use
+   --pid-file     the pid file to use
+
+=head1 DESCRIPTION
+
+This procedure runs as a service and launches log file monitors. It will
+keep those monitors running should they exit. 
+
+=head1 CONFIGURATION
+
+The configuration file uses the familiar Windows .ini format. It has the 
+following stanza.
+
+ [logmon: xas-spooler]
+ command = /usr/sbin/xas-logs
+ filename = /var/log/xas/xas-spooler.log
+ user = xas
+ group = xas
+
+Where the section header "logmon:" may have addtional qualifiers and repeated
+as many times as needed. The following properties may be used.
+
+=over 4
+
+=item B<ignore>
+
+Ignore anything before this number of days. Defaults to 30 days.
+
+=item B<filename>
+
+The name of the file to monitor. Defaults to /var/log/xas/xas-spooler.log
+
+=item B<spooldir>
+
+The name of the spool directory to write the parsed lines too. Defaults to
+/var/spool/xas/logs
+
+=item B<command>
+
+The command to spawn. This command needs to understand the following command
+line:
+
+ --filename %s --spooldir %s --ignore %s --log-type console
+
+Where %s is subsituted with the appropiate values.
+
+=item B<auto-start>
+
+Wither to auto start the process. Defaults to true.
+
+=item B<auto-restart>
+
+Wither to restart the process should it die. Defaults to true.
+
+=item B<directory>
+
+The root directory to for the command to run in. Defaults to "/".
+
+=item B<exit-codes>
+
+Auto restart only works if the process uses these exit codes. Defaults to "0,1".
+This needs to be a comma delimited string.
+
+=item B<group>
+
+The group to run the process under. Defaults to "xas". This is not used on
+Windows platforms.
+
+=item B<priority>
+
+The priority to run the process under. Defaults to 0. This is not used on
+Windows platforms.
+
+=item B<umask>
+
+The umask for the process. Defaults to "0022". This is not used on Windows
+platforms.
+
+=item B<user>
+
+The user to run the process under. This defaults to "xas". This is not used
+on Windows platforms.
+
+=back
+
+=head1 OPTIONS AND ARGUMENTS
+
+=over 4
+
+=item B<--help>
+
+Displays a simple help message.
+
+=item B<--debug>
+
+Turns on debbuging.
+
+=item B<--alerts>
+
+Togggles alert notification.
+
+=item B<--log-type>
+
+Toggles the log type. Defaults to 'console'. Can be 'console', 'file', 
+'json' or 'syslog'.
+
+=item B<--log-facility>
+
+Toggles the log facilty. Defaults to 'local6'. This follows syslog
+convention.
+
+=item B<--log-file>
+
+Optional log file. When specified the log type is set to 'file'.
+
+=item B<--cfg-file>
+
+Optional config file. Defaults to $XAS_ETC/xas-logmon.ini.
+
+=item B<--pid-file>
+
+Optional pid file. Defautls to $XAS_RUN/xas-logmon.pid.
+
+=item B<--manual>
+
+The complete documentation.
+
+=item B<--version>
+
+Prints out the apps version
+
+=back
+
+=head1 EXIT CODES
+
+ 0 - success
+ 1 - failure
+
+=head1 SEE ALSO
+
+=over 4
+
+=item L<XAS::Apps::Logmon::Monitor|XAS::Apps::Logmon::Monitor>
+
+=item L<XAS::Logmon|XAS::Logmon>
+
+=item L<XAS|XAS>
+
+=back
+
+=head1 AUTHOR
+
+Kevin L. Esteb, E<lt>kevin@kesteb.usE<gt>
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright (c) 2012-2015 Kevin L. Esteb
+
+This is free software; you can redistribute it and/or modify it under
+the terms of the Artistic License 2.0. For details, see the full text
+of the license at http://www.perlfoundation.org/artistic_license_2_0.
+
+=cut

@@ -10,12 +10,11 @@ debian/postrm
 debian/preinst
 debian/rules
 debian/watch
-etc/.gitkeeper
 etc/xas-logmon.ini
 ignore.txt
 init.d/xas-logmon.debian
 init.d/xas-logmon.rhel
-lib/XAS/Apps/Logmon/XAS/Monitor.pm
+lib/XAS/Apps/Logmon/Monitor.pm
 lib/XAS/Apps/Logmon/XAS/Process.pm
 lib/XAS/Docs/Logmon/Installation.pm
 lib/XAS/Lib/Regexp/Log/XAS.pm
@@ -34,6 +33,8 @@ logrotate.d/xas-logmon
 MANIFEST			This list of files
 perl-XAS-Logmon.spec
 README
+sbin/xas-logmon
+sbin/xas-logs
 sysconfig/xas-logmon
 t/00-load.t
 t/boilerplate.t

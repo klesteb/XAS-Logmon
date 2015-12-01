@@ -69,9 +69,7 @@ sub main {
     my $merge    = XAS::Logmon::Filter::Merge->new();
     my $logstash = XAS::Logmon::Format::Logstash->new();
     my $default  = XAS::Logmon::Parser::XAS::Logs->new();
-    my $tasks    = XAS::Logmon::Parser::XAS::Logs->new(
-        format => ':tasks'
-    );
+    my $tasks    = XAS::Logmon::Parser::XAS::Logs->new(format => ':tasks');
 
     while (my $line = $input->get()) {
 
