@@ -18,7 +18,6 @@ LCKFILE="/var/lock/subsys/$NAME"
 PIDFILE="/var/run/xas/$NAME.pid"
 LOGFILE="/var/log/xas/$NAME.log"
 CONFIGS="/etc/xas/$NAME.ini"
-CONMGR="/progress/properties/conmgr.properties"
 
 # integrate the overrides
 
@@ -31,7 +30,7 @@ if [ -f /etc/profile.d/xas.sh ]; then
 fi
 
 PROGRAM="/usr/sbin/$NAME"
-PARAMS="--pidfile $PIDFILE --cfgfile $CONFIGS --logfile $LOGFILE --conmgr $CONMGR --daemon"
+PARAMS="--pid-file $PIDFILE --cfg-file $CONFIGS --log-file $LOGFILE --daemon"
 
 # integrate the RHEL functions
 
