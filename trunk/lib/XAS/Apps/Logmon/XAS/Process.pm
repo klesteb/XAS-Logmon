@@ -13,7 +13,7 @@ use XAS::Logmon::Parser::XAS::Logs;
 use XAS::Class
   debug      => 0,
   version    => $VERSION,
-  base       => 'XAS::Lib::App::Daemon',
+  base       => 'XAS::Lib::App',
   accessors  => 'filename spooldir ignore',
   utils      => 'dotid trim',
   filesystem => 'Dir File',

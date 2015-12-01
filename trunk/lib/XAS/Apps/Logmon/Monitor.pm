@@ -38,14 +38,12 @@ sub setup {
         my $filename = File($self->cfg->val($section, 'filename', '/var/logs/xas/xas-spooler.log'));
         my $spooldir = Dir($self->cfg->val($section, 'spooldir', '/var/spool/xas/logs'));
         my $cmd      = File($self->cfg->val($section, 'command'));
-        my $pidfile  = File($self->env->run, $cmd->basename . '-' . $filename->basename . '.pid');
 
-        my $command = sprintf('%s --filename %s --spooldir %s --ignore %s --pid-file %s --log-type console',
+        my $command = sprintf('%s --filename %s --spooldir %s --ignore %s --log-type console',
             $cmd,
             $filename,
             $spooldir,
             $ignore,
-            $pidfile,
         );
 
         $alias = trim($alias);
