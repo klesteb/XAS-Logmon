@@ -367,12 +367,12 @@ my $builder = $class->new(
     requires           => $requires
 );
 
-#$builder->add_build_element('etc');
-#$builder->add_build_element('msg');
-#$builder->add_build_element('sbin');
-#$builder->add_build_element('initd');
-#$builder->add_build_element('sysconf');
-#$builder->add_build_element('logrotated');
+$builder->add_build_element('etc');
+$builder->add_build_element('msg');
+$builder->add_build_element('sbin');
+$builder->add_build_element('initd');
+$builder->add_build_element('sysconf');
+$builder->add_build_element('logrotated');
 
 $builder->create_build_script();
 
