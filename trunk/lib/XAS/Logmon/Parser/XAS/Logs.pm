@@ -2,14 +2,13 @@ package XAS::Logmon::Parser::XAS::Logs;
 
 our $VERSION = '0.01';
 
-use DateTime::Format::Strptime;
 use XAS::Lib::Regexp::Log::XAS;
 
 use XAS::Class
   debug     => 0,
   version   => $VERSION,
   base      => 'XAS::Base',
-  utils     => 'trim dotid',
+  utils     => 'trim dotid db2dt',
   accessors => 'regex fields',
 ;
 
@@ -29,8 +28,9 @@ sub parse {
 
     if ((@data{@$fields}) = ($line =~ /$regex/)) {
 
-        $data{'message'} = trim($data{'message'});
-        $data{'type'}    = 'xas-logs';
+        $data{'datetime'} = db2dt($data{'datetime'});
+        $data{'message'}  = trim($data{'message'});
+        $data{'type'}     = 'xas-logs';
 
         return \%data;
 
