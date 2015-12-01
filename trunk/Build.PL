@@ -50,6 +50,7 @@ my $class = Module::Build->subclass(code => <<'EOC');
     use warnings;
 
     use IO::File;
+    use File::Copy;
     use File::Find;
     use File::Basename;
     use File::Spec::Functions qw( catfile catdir rel2abs );
