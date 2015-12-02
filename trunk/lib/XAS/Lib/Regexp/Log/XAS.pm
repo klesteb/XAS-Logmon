@@ -20,12 +20,12 @@ use vars qw( %DEFAULT %FORMAT %REGEXP );
 
 %DEFAULT = (
     format  => '%datetime%level%message',
-    capture => [qw( datetime level message )],
+    capture => [qw( datetime level task message )],
 );
 
 %FORMAT = (
-    ':default'  => '%datetime%level%message',
-    ':tasks'    => '%datetime%level%task%message',
+    ':default' => '%datetime%level%message',
+    ':tasks'   => '%datetime%level%task%message',
 );
 
 %REGEXP = (
