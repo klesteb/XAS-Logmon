@@ -57,11 +57,11 @@ sub main {
 
     $self->setup();
 
-    my $output = XAS::Logmon::Output::Spool->new();
-    my $input  = XAS::Logmon::Input::Tail->new(
+    my $input = XAS::Logmon::Input::Tail->new(
         -filename => $self->filename
     );
 
+    my $output   = XAS::Logmon::Output::Spool->new();
     my $merge    = XAS::Logmon::Filter::Merge->new();
     my $logstash = XAS::Logmon::Format::Logstash->new();
     my $default  = XAS::Logmon::Parser::XAS::Logs->new();
@@ -78,7 +78,7 @@ sub main {
                 hostname   => $self->env->host,
                 facility   => $self->env->log_facility,
                 priority   => level2syslog(lc($data->{'level'})),
-                tid        => $data->{'task'} || '0',
+                tid        => $data->{'task'},
                 pid        => '0',
                 msgid      => '0',
                 process    => $self->process,

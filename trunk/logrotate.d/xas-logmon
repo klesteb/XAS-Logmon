@@ -1,5 +1,6 @@
 
 /var/log/xas/xas-logmon.log {
+    su xas xas
     daily
     nodateext
     rotate 5
