@@ -57,12 +57,6 @@ sub format {
     my $event = {
         '@timestamp' => $self->dt2ls($data->{'datetime'}, 'UTC'),
         '@version'   => 1,
-        'priority'   => $data->{'level'},
-        'tid'        => $data->{'task'} || '',
-        'pid'        => '0',
-        'msgid'      => '0',
-        'facility'   => 'local6',
-        'process'    => '',
     };
 
     delete($data->{'datetime'});

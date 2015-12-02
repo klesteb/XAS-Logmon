@@ -39,11 +39,12 @@ sub setup {
         my $spooldir = Dir($self->cfg->val($section, 'spooldir', '/var/spool/xas/logs'));
         my $cmd      = File($self->cfg->val($section, 'command'));
 
-        my $command = sprintf('%s --filename %s --spooldir %s --ignore %s --log-type console',
+        my $command = sprintf('%s --filename %s --spooldir %s --ignore %s --process %s --log-type console',
             $cmd,
             $filename,
             $spooldir,
             $ignore,
+            $alias
         );
 
         $alias = trim($alias);

@@ -14,8 +14,8 @@ use XAS::Class
   debug      => 0,
   version    => $VERSION,
   base       => 'XAS::Lib::App',
-  accessors  => 'filename spooldir ignore',
-  utils      => 'dotid trim',
+  accessors  => 'filename spooldir ignore process',
+  utils      => 'dotid trim levle2syslog',
   filesystem => 'Dir File',
 ;
 
@@ -76,6 +76,12 @@ sub main {
             $data = $merge->filter($data, {
                 '@message' => trim($line),
                 hostname   => $self->env->host,
+                facility   => $self->env->log_facility,
+                priority   => level2syslog($data->{'level'}),
+                tid        => $data->{'task'} || '0',
+                pid        => '0',
+                msgid      => '0',
+                process    => $self->process,
             });
 
             my $event = $logstash->format($data);
@@ -93,6 +99,12 @@ sub main {
             $data = $merge->filter($data, {
                 '@message' => trim($line),
                 hostname   => $self->env->host,
+                facility   => $self->env->log_facility,
+                priority   => level2syslog($data->{'level'}),
+                tid        => $data->{'task'} || '0',
+                pid        => '0',
+                msgid      => '0',
+                process    => $self->process,
             });
 
             my $event = $logstash->format($data);
@@ -113,11 +125,13 @@ sub options {
     my $self = shift;
 
     $self->{'ignore'}   = 300;
+    $self->{'process'}  = 'xas-spooler';
     $self->{'spooldir'} = Dir($self->env->spool, 'logs');
     $self->{'filename'} = File($self->env->log, 'xas-spooler.log');
 
     return {
         'ignore=s' => \$self->{'ignore'},
+        'process=s' => \$self->{'process'},
         'spooldir=s' => sub {
             $self->{'spooldir'} = Dir($_[1]);
         },
