@@ -69,9 +69,13 @@ sub main {
 
     while (my $line = $input->get()) {
 
+        $self->log->debug(sprintf("line: %s", $line));
+
         if (my $data = $tasks->parse($line)) {
 
             next if ($self->reject($data));
+
+            $self->log->debug("found tasks");
 
             $data = $merge->filter($data, {
                 '@message' => trim($line),
@@ -88,9 +92,15 @@ sub main {
 
             $output->put($event);
 
-        } elsif (my $data = $default->parse($line)) {
+            next;
+
+        }
+
+        if (my $data = $default->parse($line)) {
 
             next if ($self->reject($data));
+
+            $self->log->debug("found default");
 
             $data = $merge->filter($data, {
                 '@message' => trim($line),
@@ -107,11 +117,11 @@ sub main {
 
             $output->put($event);
 
-        } else {
+            next;
 
-            $self->log->error_msg('logmon_parserr', trim($line));
+        } 
 
-        }
+        $self->log->error_msg('logmon_parserr', trim($line));
 
     }
 

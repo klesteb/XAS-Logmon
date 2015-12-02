@@ -17,7 +17,7 @@ use XAS::Class
   version    => $VERSION,
   base       => 'XAS::Base',
   mixin      => $mixin,
-  utils      => 'dotid',
+  utils      => 'dotid trim',
   accessors  => 'notifier statefile',
   filesystem => 'File',
   vars => {
@@ -48,7 +48,7 @@ sub _do_tail {
 
     while (my $line = $fh->getline()) {
 
-        push(@{$self->{'buffer'}}, $line);
+        push(@{$self->{'buffer'}}, trim($line));
 
     }
 
