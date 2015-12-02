@@ -88,11 +88,7 @@ sub main {
 
             $output->put($event);
 
-            next;
-
-        }
-
-        if (my $data = $default->parse($line)) {
+        } elsif (my $data = $default->parse($line)) {
 
             next if ($self->reject($data));
 
@@ -111,11 +107,11 @@ sub main {
 
             $output->put($event);
 
-            next;
+        } else {
+
+            $self->log->error_msg('logmon_parserr', trim($line));
 
         }
-
-        $self->log->error_msg('logmon_parserr', trim($line));
 
     }
 
