@@ -75,7 +75,7 @@ sub main {
 
             $data = $merge->filter($data, {
                 '@message' => trim($line),
-                hostname   => $self->env->hostname,
+                hostname   => $self->env->host,
             });
 
             my $event = $logstash->format($data);
