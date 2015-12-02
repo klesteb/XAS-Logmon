@@ -69,7 +69,7 @@ sub main {
 
     while (my $line = $input->get()) {
 
-        if (my $data = $default->parse($line)) {
+        if (my $data = $tasks->parse($line)) {
 
             next if ($self->reject($data));
 
@@ -86,13 +86,13 @@ sub main {
 
         }
 
-        if (my $data = $tasks->parse($line)) {
+        if (my $data = $default->parse($line)) {
 
             next if ($self->reject($data));
 
             $data = $merge->filter($data, {
                 '@message' => trim($line),
-                hostname   => $self->env->hostname,
+                hostname   => $self->env->host,
             });
 
             my $event = $logstash->format($data);
