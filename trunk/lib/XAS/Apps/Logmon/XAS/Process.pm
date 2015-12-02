@@ -15,7 +15,7 @@ use XAS::Class
   version    => $VERSION,
   base       => 'XAS::Lib::App',
   accessors  => 'filename spooldir ignore process',
-  utils      => 'dotid trim levle2syslog',
+  utils      => 'dotid trim level2syslog',
   filesystem => 'Dir File',
 ;
 
