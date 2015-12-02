@@ -33,9 +33,8 @@ sub reject {
         end   => $now
     );
 
-    return 1 if ($span->contains($data->{'datetime'}));
-
-    return 0;
+    return 0 if ($span->contains($data->{'datetime'}));
+    return 1;
 
 }
 
