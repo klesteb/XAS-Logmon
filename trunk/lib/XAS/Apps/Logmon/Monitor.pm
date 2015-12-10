@@ -9,14 +9,14 @@ use XAS::Class
   version    => $VERSION,
   base       => 'XAS::Lib::App::Service',
   mixin      => 'XAS::Lib::Mixins::Configs',
-  utils      => 'dotid trim',
+  utils      => 'dotid trim :env',
   constants  => 'TRUE FALSE',
   accessors  => 'cfg',
   filesystem => 'File Dir',
   vars => {
     SERVICE_NAME         => 'XAS_Log',
     SERVICE_DISPLAY_NAME => 'XAS Log Monitor',
-    SERVICE_DESCRIPTION  => 'Monitor log files'
+    SERVICE_DESCRIPTION  => 'XAS log file monitor'
   }
 ;
 
@@ -33,6 +33,7 @@ sub setup {
 
         next if ($section !~ /^logmon:/);
 
+        my $env      = {};
         my ($alias)  = $section =~ /^logmon:(.*)/;
         my $ignore   = $self->cfg->val($section, 'ignore', '30');
         my $filename = File($self->cfg->val($section, 'filename', '/var/logs/xas/xas-spooler.log'));
@@ -49,6 +50,12 @@ sub setup {
 
         $alias = trim($alias);
 
+        if (my $e = $self->cfg->val($section, 'environment', undef)) {
+
+            $env = env_parse($e);
+
+        }
+
         my $process = XAS::Lib::Process->new(
             -alias          => $alias,
             -pty            => 1,
@@ -56,6 +63,7 @@ sub setup {
             -auto_start     => $self->cfg->val($section, 'auto-start', TRUE),
             -auto_restart   => $self->cfg->val($section, 'auto-restart', TRUE),
             -directory      => Dir($self->cfg->val($section, 'directory', "/")),
+            -environment    => $env,
             -exit_codes     => $self->cfg->val($section, 'exit-codes', '0,1'),
             -exit_retries   => $self->cfg->val($section, 'exit-retires', -1),
             -group          => $self->cfg->val($section, 'group', 'xas'),
@@ -65,11 +73,14 @@ sub setup {
             -redirect       => 1,
             -output_handler => sub {
                 my $output = shift;
-                my ($level) = $output =~ /\s+(\w+)\s+-/;
-                my ($line)  = $output =~ /\s+-(.*)/;
-                $level = lc(trim($level)) || 'info';
-                $line  = trim($line) || '';
-                $self->log->$level(sprintf('%s: %s', $alias, $line));
+                $output = trim($output);
+                if (my ($level, $line) = $output =~/\s+(\w+)\s+-\s+(.*)/ ) {
+                    $level = lc(trim($level));
+                    $line  = trim($line);
+                    $self->log->$level(sprintf('%s: %s', $alias, $line));
+                } else {
+                    $self->log->info(sprintf('%s: -> %s', $alias, $output));
+                }
             }
         );
 
