@@ -15,6 +15,7 @@
 #              --filename     name of log file to monitor
 #              --spooldir     the directory tp write the messages too
 #              --ignore       ignore log entries older then these days
+#              --process      name of the process that created file
 #              --log-type     toggles the log type
 #              --log-facility changes the log facility to use
 #              --log-file     name of the log file
@@ -62,7 +63,7 @@ xas-logs [--help] [--debug] [--manual] [--version]
    --filename     name of log file to monitor
    --spooldir     the directory tp write the messages too
    --ignore       ignore log entries older then these days
-   --process      name of process that created file
+   --process      name of the process that created file
    --help         outputs simple help text
    --manual       outputs the procedures manual
    --version      outputs the apps version
