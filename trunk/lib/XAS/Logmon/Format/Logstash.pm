@@ -90,30 +90,31 @@ __END__
 
 =head1 NAME
 
-XAS::Log::Formatter::Logstash - A formatting class for log file handling
+XAS::Log::Format::Logstash - A formatting class for log file handling
 
 =head1 SYNOPSIS
 
- use XAS::Log::Formatter::Logstash;
+ use XAS::Log::Format::Logstash;
 
- my $formatter = XAS::Log::Formatter::Logstash->new();
+ my $formatter = XAS::Log::Format::Logstash->new();
  my $event = $formatter->format($data);
 
 =head1 DESCRIPTION
 
-This package will take a hash and format it into a json_event for logstash.
+This package will take a hash and format it into a json_event for 
+L<Logstash|https://www.elastic.co/products/logstash>.
 
 =head1 METHODS
 
 =head2 format($data)
 
 This method will add the key fields, convert the @timestamp field into a
-UTC date while formating the datetime field into a local date. It returns
+UTC date while formatting the datetime field into a local date. It returns
 a json_event string.
 
 =over 4
 
-=item b<$data>
+=item B<$data>
 
 The hash to format.
 

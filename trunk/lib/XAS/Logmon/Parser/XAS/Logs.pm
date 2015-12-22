@@ -102,7 +102,8 @@ return a regex that includes the "tasks" field.
 
 This method does the actual parsing. When done it will remove the trailing
 new line from the "message" field and convert the "datetime" field into a
-DateTime object. It returns a hash with the following fields:
+L<DateTime|https://metacpan.org/pod/DateTime> object. It returns a hash 
+with the following fields:
 
   datetime level message
 
@@ -110,7 +111,7 @@ DateTime object. It returns a hash with the following fields:
 
 =over 4
 
-=item L<XAS::Log|XAS::Logmon>
+=item L<XAS::Logmon|XAS::Logmon>
 
 =item L<XAS|XAS>
 

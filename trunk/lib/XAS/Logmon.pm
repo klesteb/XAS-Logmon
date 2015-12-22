@@ -20,7 +20,7 @@ There is important operational data stored in those files. They detail the
 state of your operations. These modules would compliment a centralized syslog 
 gathering operationation. Even thou XAS can write to syslog or create JSON 
 formatted log messages and spool them directly, these modules provide a 
-framework that can be expanded to include other type of files.
+framework that can be expanded to include other types of files.
 
 The design of this system is a monitoring process that spawns background jobs
 that do the actual work. Those background jobs are kept alive when file states

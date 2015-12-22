@@ -129,6 +129,12 @@ XAS::Apps::Logmon::Monitor - A class for the XAS environment
 
  use XAS::Apps::Logmon::Monitor;
 
+ my $app = XAS::Apps::Logmon::Monitor->new(
+     -throws => 'xas-logmon'
+ );
+
+ exit $app->run;
+
 =head1 DESCRIPTION
 
 This module will spawn multiple log monitoring processes. It will keep track
