@@ -59,6 +59,10 @@ xas-logs - monitor and parse XAS log files
 xas-logs [--help] [--debug] [--manual] [--version]
 
  options:
+   --filename     name of log file to monitor
+   --spooldir     the directory tp write the messages too
+   --ignore       ignore log entries older then these days
+   --process      name of process that created file
    --help         outputs simple help text
    --manual       outputs the procedures manual
    --version      outputs the apps version
@@ -67,9 +71,6 @@ xas-logs [--help] [--debug] [--manual] [--version]
    --log-file     name of the log file 
    --log-type     toggles the log type
    --log-facility changes the log facility
-   --filename     name of log file to monitor
-   --spooldir     the directory tp write the messages too
-   --ignore       ignore log entries older then these days
 
 =head1 DESCRIPTION
 
@@ -92,6 +93,10 @@ The directory to write the messages too.
 =item B<--ignore>
 
 Ignore any log lines older then these days.
+
+=item B<--process>
+
+That name of the process that create the file.
 
 =item B<--help>
 

@@ -51,7 +51,7 @@ __END__
 
 =head1 NAME
 
-xas-logmon - the control program for log monitors
+xas-logmon - the control program for file monitors
 
 =head1 SYNOPSIS
 
@@ -76,85 +76,8 @@ keep those monitors running should they exit.
 
 =head1 CONFIGURATION
 
-The configuration file uses the familiar Windows .ini format. It has the 
-following stanza.
-
- [logmon: xas-spooler]
- command = /usr/sbin/xas-logs
- filename = /var/log/xas/xas-spooler.log
- user = xas
- group = xas
-
-Where the section header "logmon:" may have addtional qualifiers and repeated
-as many times as needed. The following properties may be used.
-
-=over 4
-
-=item B<ignore>
-
-Ignore anything before this number of days. Defaults to 30 days.
-
-=item B<filename>
-
-The name of the file to monitor. Defaults to /var/log/xas/xas-spooler.log
-
-=item B<spooldir>
-
-The name of the spool directory to write the parsed lines too. Defaults to
-/var/spool/xas/logs
-
-=item B<command>
-
-The command to spawn. This command needs to understand the following command
-line:
-
- --filename %s --spooldir %s --ignore %s --log-type console
-
-Where %s is subsituted with the appropiate values.
-
-=item B<auto-start>
-
-Wither to auto start the process. Defaults to true.
-
-=item B<auto-restart>
-
-Wither to restart the process should it die. Defaults to true.
-
-=item B<directory>
-
-The root directory to for the command to run in. Defaults to "/".
-
-=item B<exit-codes>
-
-Auto restart only works if the process uses these exit codes. Defaults to "0,1".
-This needs to be a comma delimited string.
-
-=item B<exit-retries>
-
-The number of retries to try before giving up. Defaults to -1. This means to 
-continually retry.
-
-=item B<group>
-
-The group to run the process under. Defaults to "xas". This is not used on
-Windows platforms.
-
-=item B<priority>
-
-The priority to run the process under. Defaults to 0. This is not used on
-Windows platforms.
-
-=item B<umask>
-
-The umask for the process. Defaults to "0022". This is not used on Windows
-platforms.
-
-=item B<user>
-
-The user to run the process under. This defaults to "xas". This is not used
-on Windows platforms.
-
-=back
+Please refer to L<XAS::Apps::Logmon::Monitor|XAS::Apps::Logmon::Monitor>
+for configuration file information.
 
 =head1 OPTIONS AND ARGUMENTS
 
