@@ -122,7 +122,8 @@ XAS::Logmon::Input::Tail::Win32 - A mixin for Win32 specific file tailing
 =head1 DESCRIPTION
 
 This method is autoloaded when running on a Win32 platform. It uses
-L<Win32::FileNotify|Win32::FileNotify> to monitor the file.
+L<Win32::FileNotify|https://metacpan.org/pod/Win32::FileNotify> to monitor 
+the file.
 
 =head2 get
 
@@ -137,7 +138,13 @@ Initialize Win32::FileNotify and start the file monitoring.
 
 =over 4
 
-=item L<XAS::Logmon>
+=item L<XAS::Logmon::Input::Tail::Default|XAS::Logmon::Input::Tail::Default>
+
+=item L<XAS::Logmon::Input::Tail::Linux|XAS::Logmon::Input::Tail::Linux>
+
+=item L<XAS::Logmon::Input::Tail|XAS::Logmon::Input::Tail>
+
+=item L<XAS::Logmon|XAS::Logmon>
 
 =item L<XAS|XAS>
 

@@ -102,7 +102,13 @@ deleted.
 
 =over 4
 
-=item L<XAS::Logmon>
+=item L<XAS::Logmon::Input::Tail::Linux|XAS::Logmon::Input::Tail::Linux>
+
+=item L<XAS::Logmon::Input::Tail::Win32|XAS::Logmon::Input::Tail::Win32>
+
+=item L<XAS::Logmon::Input::Tail|XAS::Logmon::Input::Tail>
+
+=item L<XAS::Logmon|XAS::Logmon>
 
 =item L<XAS|XAS>
 

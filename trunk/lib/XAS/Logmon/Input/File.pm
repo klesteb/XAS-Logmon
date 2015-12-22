@@ -41,7 +41,7 @@ sub init {
 
     my $self = $class->SUPER::init(@_);
 
-    $self->{fh} = $self->filename->open('r');
+    $self->{'fh'} = $self->filename->open('r');
 
     return $self;
 
@@ -82,7 +82,9 @@ This method will return a line from the file.
 
 =over 4
 
-=item L<XAS::Logmon>
+=item L<XAS::Logmon::Input::Tail|XAS::Logmon::Input::Tail>
+
+=item L<XAS::Logmon|XAS::Logmon>
 
 =item L<XAS|XAS>
 

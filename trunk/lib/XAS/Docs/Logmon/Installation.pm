@@ -8,7 +8,7 @@ __END__
   
 =head1 NAME
 
-XAS::Docs::Logmon::Installation - how to install the XAS Logmon
+XAS::Docs::Logmon::Installation - how to install the XAS Log Monitor
 
 XAS is middleware for datacenter operations. It provides standardized methods, 
 modules and philosophy for constructing applications typically used to manage
@@ -35,10 +35,12 @@ When done, the following commands are run from that directory.
 
 On Unix like systems, using pure Perl, run the following commands:
 
-    # perl Build.PL --installdirs site
+    # perl Build.PL --installdirs vendor
     # ./Build
     # ./Build test
     # ./Build install
+    # ./Build debian    # removes redhat specific files when installing on debian
+    # ./Build redhat    # removes debian specific files when installing on redhat
 
 If you are DEB based, Debian build files have been provided. If you have a 
 Debian build environment, then you can do the following:

@@ -123,7 +123,7 @@ The hash to format.
 
 =over 4
 
-=item L<XAS::Logmon>
+=item L<XAS::Logmon|XAS::Logmon>
 
 =item L<XAS|XAS>
 

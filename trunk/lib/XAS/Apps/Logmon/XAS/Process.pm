@@ -158,23 +158,81 @@ __END__
 
 =head1 NAME
 
-XAS::Apps::Log::Progress::AdminServer - A class to monitor a progress admin server log file
+XAS::Apps::Logmon::XAS::Process - A class to monitor XAS log files
 
 =head1 SYNOPSIS
 
- use XAS::Apps::Log::Progress::AdminServer;
+ use XAS::Apps::Logmon::XAS::Process;
 
- my $app = XAS::Apps::Log::Progress::AdminServer->new()
- 
+ my $app = XAS::Apps::Logmon::XAS::Process->new(
+     -throws => 'xas-logs'
+ );
+
  exit $app->run;
  
 =head1 DESCRIPTION
 
+This procedure will monitor XAS log files. It uses various means, depending on
+platform to determine when a file has changed. When a change occurs, this
+procedure will read until the end of file, parsing and creating messages as it
+goes. A status file is written into the directory of log file. It will have
+an extension of '.logmon'. On Linux/Unix this will be a hidden file.
+
 =head1 METHODS
 
-=head2 method1
+=head2 setup
+
+This method will configure the process.
+
+=head2 main
+
+This method will start the processing. 
+
+=head2 options
+
+This method provides these additonal cli options. 
+
+=over 4
+
+=item B<--ignore>
+
+The number of days prior to today to ignore log lines. Defaults to 300.
+
+=item B<--process>
+
+The name of the process used to create the log file. Defaults to "xas-spooler".
+
+=item B<--spooldir>
+
+The spool director to use. Defaults to $XAS_SPOOL/logs.
+
+=item B<--filename>
+
+The name of the log file. Defaults to $XAS_LOG/xas-spooler.log.
+
+=back
 
 =head1 SEE ALSO
+
+=over 4
+
+=item L<XAS::Logmon::Input::Tail|XAS::Logmon::Input::Tail>
+
+=item L<XAS::Logmon::Filter::Merge|XAS::Logmon::Filter::Merge>
+
+=item L<XAS::Logmon::Output::Spool|XAS::Logmon::Output::Spool>
+
+=item L<XAS::Logmon::Format::Logstash|XAS::Logmon::Format::Logstash>
+
+=item L<XAS::Logmon::Parser::XAS::Logs|XAS::Logmon::Parser::XAS::Logs>
+
+=item L<XAS::Logmon::Process|XAS::Logmon::Process>
+
+=item L<XAS::Logmon|XAS::Logmon>
+
+=item L<XAS|XAS>
+
+=back
 
 =head1 AUTHOR
 

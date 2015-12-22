@@ -211,7 +211,13 @@ Initialize Linux::Inotify2 and start the file monitoring.
 
 =over 4
 
-=item L<XAS::Logmon>
+=item L<XAS::Logmon::Input::Tail::Default|XAS::Logmon::Input::Tail::Default>
+
+=item L<XAS::Logmon::Input::Tail::Win32|XAS::Logmon::Input::Tail::Win32>
+
+=item L<XAS::Logmon::Input::Tail|XAS::Logmon::Input::Tail>
+
+=item L<XAS::Logmon|XAS::Logmon>
 
 =item L<XAS|XAS>
 

@@ -110,9 +110,9 @@ DateTime object. It returns a hash with the following fields:
 
 =over 4
 
-=item L<XAS|XAS>
-
 =item L<XAS::Log|XAS::Logmon>
+
+=item L<XAS|XAS>
 
 =item L<Regexp::Log|https://metacpan.org/pod/Regexp::Log>
 

@@ -60,8 +60,8 @@ sub setup {
             -alias          => $alias,
             -pty            => 1,
             -command        => $command,
-            -auto_start     => $self->cfg->val($section, 'auto-start', TRUE),
-            -auto_restart   => $self->cfg->val($section, 'auto-restart', TRUE),
+            -auto_start     => 1,
+            -auto_restart   => 1,
             -directory      => Dir($self->cfg->val($section, 'directory', "/")),
             -environment    => $env,
             -exit_codes     => $self->cfg->val($section, 'exit-codes', '0,1'),
@@ -129,17 +129,100 @@ XAS::Apps::Logmon::Monitor - A class for the XAS environment
 
  use XAS::Apps::Logmon::Monitor;
 
-
 =head1 DESCRIPTION
 
 This module will spawn multiple log monitoring processes. It will keep track
-of them and restart them if they should stop.
+of them and restart them if they should die. Any output from the monitoring
+processes are written into the log file. 
+
+=head1 CONFIGURATION
+
+The configuration file is the familiar Windows .ini format. It has the 
+following stanzas.
+
+ [logmon: xas-spooler]
+ command = /usr/sbin/xas-logs
+ filename = /var/log/xas/xas-spooler.log
+
+This stanza defines a log file to monitor. There can be multiple stanzas. The
+"xas-spooler" in the stanzas name must be unique. Reasonable defaults
+have been defined for most of the properties. You really only need to use 
+'filename' to start a monitoring process.
+
+The following properties may be used.
+
+=over 4
+
+=item B<command>
+
+This is the command to run. Defaults to /usr/sbin/xas-logs.
+
+=item B<filename>
+
+The file to monitor. Defaults to /var/log/xas/xas-spooler.log.
+
+=item B<spooldir>
+
+The spool directory to write messages. Defaults to /var/spool/xas/logs.
+
+=item B<ignore>
+
+The number of days prior to today to ignore. Defaults to 30.
+
+=back
+
+Please see L<XAS::Lib::Process|XAS::Lib::Process> for more details on the 
+following parameters.
+
+=over 4
+
+=item B<directory>
+
+The default directory to set for the process. Defaults to "/".
+
+=item B<environment>
+
+Optional additional environment variables to pass to the process. 
+
+=item B<exit-codes>
+
+The possible exit codes that might be returned if the process aborts. These
+are used to determine if the process should be restarted. Defaults to "0,1".
+This must be a comma delimited list of values.
+
+=item B<exit-retires>
+
+The number of retries for restarting the process. Defaults to "5". If this is
+"-1" then retries are unlimited. Use with caution.
+
+=item B<group>
+
+The group to run the process under. Defaults to "xas". Not implemented under
+Windows.
+
+=item B<priority>
+
+The priority to run the process under. Defaults to "0". Not implemented under
+Windows.
+
+=item B<umask>
+
+The umask to use for the process. Defaults to "0022". Not implemented under
+Windows.
+
+=item B<user>
+
+The user to run the process under. Defaults to "xas". Not implemented under
+Windows.
+
+=back
 
 =head1 METHODS
 
 =head2 setup
 
-This method will process the config file and spawn log monitoring processes.
+This method will process the config file and spawn the log monitoring 
+processes.
 
 =head2 main
 
@@ -147,13 +230,14 @@ This method will start the processing.
 
 =head2 options
 
-This method defines the command line options.
+No additional command line options are defined.
 
 =head1 SEE ALSO
 
 =over 4
 
-=item L<XAS::Logmon>
+
+=item L<XAS::Logmon|XAS::Logmon>
 
 =item L<XAS|XAS>
 
