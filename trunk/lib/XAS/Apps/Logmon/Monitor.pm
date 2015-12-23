@@ -188,7 +188,8 @@ The default directory to set for the process. Defaults to "/".
 
 =item B<environment>
 
-Optional additional environment variables to pass to the process. 
+Optional additional environment variables to pass to the process. This should
+be in this form "key1=value1;;key2=value2".
 
 =item B<exit-codes>
 
