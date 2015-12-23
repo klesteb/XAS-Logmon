@@ -42,11 +42,11 @@ The configuration file is documented here: L<XAS::Apps::Logmon::Monitor|XAS::App
 
 =over 4
 
-=item xas-logmon --help
+=item B<xas-logmon --help>
 
 This will display a brief help screen on command options.
 
-=item xas-logmon --manual
+=item B<xas-logmon --manual>
 
 This will display the utilities man page.
 
